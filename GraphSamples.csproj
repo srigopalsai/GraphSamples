@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{62B9C075-7C04-47F4-B9FF-615B04C8406A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>GraphSamples</RootNamespace>
+    <AssemblyName>GraphSamples</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="1 - Graph\Graph - Type 2.cs" />
+    <Compile Include="1 - Graph\Matrix.cs" />
+    <Compile Include="0 - References\Test Data.cs" />
+    <Compile Include="2 - Traversal\List      - Dfs Bfs IDfs    - Graph Traversal.cs" />
+    <Compile Include="2 - Traversal\Matrix - Bfs                  - Directed Snake and Lader Game.cs" />
+    <Compile Include="2 - Traversal\Matrix - Dfs Bfs Idfs     - Graph Traversal.cs" />
+    <Compile Include="2 - Traversal\Matrix - Dfs                 - Is Bi Connected.cs" />
+    <Compile Include="2 - Traversal\Matrix - Dfs Bfs            - Is Connected.cs" />
+    <Compile Include="2 - Traversal\List      - Dfs                 - All Paths From Source to Destination.cs" />
+    <Compile Include="2 - Traversal\Matrix - Bfs                  - Max Flow - Ford Fulkerson.cs" />
+    <Compile Include="2 - Traversal\Shortest Path - List      - Dfs - Gabow.cs" />
+    <Compile Include="2 - Traversal\Shortest Path - Matrix - Bfs - Distance From Exit.cs" />
+    <Compile Include="2 - Traversal\Matrix - Transitive Closure - Floyd Warshall and DFS.cs" />
+    <Compile Include="2 - Traversal\List      - Dfs                 - Eulerian Path.cs" />
+    <Compile Include="2 - Traversal\Shortest Path - List      - Bellman Ford Single Source.cs" />
+    <Compile Include="2 - Traversal\Shortest Path - List      - Dfs - TP Sort - Directed Acyclic Graph.cs" />
+    <Compile Include="2 - Traversal\Shortest Path - Matrix - Bfs - Lee Algorithm.cs" />
+    <Compile Include="3 - Cycle\Detect All Cycles - Johnson Simple Cycles.cs" />
+    <Compile Include="3 - Cycle\Detect Cycle.cs" />
+    <Compile Include="3 - Cycle\Is Directed Acyclic Graph.cs" />
+    <Compile Include="4 - General\Matrix - Dfs - Knight Tour.cs" />
+    <Compile Include="4 - General\Matrix - Dfs - Biparete Matching.cs" />
+    <Compile Include="4 - General\Matrix - Minimum Height Tree.cs" />
+    <Compile Include="4 - General\List      - Dfs - Strongly Connected Components - Kosa Raju.cs" />
+    <Compile Include="5 - Minimum Spanning Tree\Boruvkas.cs" />
+    <Compile Include="6 - NP\List      - Find Good Feedback Set.cs" />
+    <Compile Include="6 - NP\Matrix - Dft - Knights Tour.cs" />
+    <Compile Include="6 - NP\Matrix - Hamiltonian Cycle.cs" />
+    <Compile Include="6 - NP\Graph Coloring.cs" />
+    <Compile Include="6 - NP\List      - Dfs - Hamiltonian Cycle.cs" />
+    <Compile Include="4 - General\List      - Dfs - Articulation Points.cs" />
+    <Compile Include="4 - General\BinaryMinHeap.cs" />
+    <Compile Include="1 - Graph\Graph.cs" />
+    <Compile Include="1 - Graph\Edge.cs" />
+    <Compile Include="1 - Graph\Vertex.cs" />
+    <Compile Include="2 - Traversal\Shortest Path - List      - Bfs - Dijkstra.cs" />
+    <Compile Include="2 - Traversal\Shortest Path - Matrix - Floyd Warshall All Pair.cs" />
+    <Compile Include="4 - General\List      - Dfs - Detect All Bridges.cs" />
+    <Compile Include="4 - General\Disjoint Set.cs" />
+    <Compile Include="4 - General\Matrix - Dfs - Evaluate Division by Flyod Warshall.cs" />
+    <Compile Include="4 - General\Matrix - Dfs - No Of Islands.cs" />
+    <Compile Include="4 - General\List      - Dfs - No Of Triangles.cs" />
+    <Compile Include="4 - General\List      - Dfs - Strongly Connected Components - Targen.cs" />
+    <Compile Include="4 - General\List      - Dfs - Topological Sort - Directed Acyclic Graph.cs" />
+    <Compile Include="4 - General\Matrix - Bfs - Walls and Gates.cs" />
+    <Compile Include="4 - General\Matrix - Dfs - Given Edges Makes Valid Tree.cs" />
+    <Compile Include="4 - General\Matrix - Bfs - Word Ladder.cs" />
+    <Compile Include="5 - Minimum Spanning Tree\List - DisjointSet - Kruskals Algorithm.cs" />
+    <Compile Include="5 - Minimum Spanning Tree\List - Min Heap   - Prims.cs" />
+    <Compile Include="6 - NP\List      - Longest Path In DAG.cs" />
+    <Compile Include="6 - NP\Matrix - N Queens.cs" />
+    <Compile Include="6 - NP\Matrix - Travelling Salesman - Using Nearest Neighbour Algorithm.cs" />
+    <Compile Include="6 - NP\List      - Travelling Salesman - Bellman Held Karp.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="0 - References\Graph Data Reference.pptx" />
+    <None Include="0 - References\Graph Data Reference.xlsx" />
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
