@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GraphSamples._2___Traversal
+namespace GraphSamples
 {
     // https://algorithms.tutorialhorizon.com/snake-and-ladder-problem/
     public class SnakeAndLadder
     {
-        class Vertex
+        public class Vertex
         {
             public int cell;
             public int moves;
         }
 
-        public int FindMinMoves(int[] board)
+        public int FindMinMovesInSnakeAndLadder(int[] board)
         {
             int boardLen = board.Length;
 
@@ -73,31 +73,6 @@ namespace GraphSamples._2___Traversal
                 }
             }
             return vertex.moves;
-        }
-
-        public void FindMinMovesTest()
-        {
-            int size = 36;
-
-            int[] board = new int[size];
-
-            for (int indx = 0; indx < size; indx++)
-            {
-                board[indx] = -1;
-            }
-
-            //ladders
-            board[2] = 15;
-            board[14] = 24;
-            board[20] = 31;
-
-            // Snakes
-            board[11] = 1;
-            board[29] = 3;
-            board[34] = 21;
-
-            SnakeAndLadder s = new SnakeAndLadder();
-            Console.WriteLine ("Minimum Dice throws needed to reach to end: " + s.FindMinMoves(board));
         }
     }
 }

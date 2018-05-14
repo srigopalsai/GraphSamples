@@ -39,31 +39,5 @@ namespace GraphSamples
 
             visitedHSet.Remove(srcVertex);
         }
-
-        public void AllPathsFromSourceToDestinationTest()
-        {
-            Graph graph = new Graph(true);
-
-            graph.AddEdge(10, 20);
-            graph.AddEdge(10, 30);
-            graph.AddEdge(20, 40);
-            graph.AddEdge(20, 50);
-            graph.AddEdge(30, 60);
-            graph.AddEdge(50, 60);
-            graph.AddEdge(50, 70);
-            graph.AddEdge(60, 70);
-            graph.AddEdge(40, 70);
-            graph.AddEdge(10, 80);
-            graph.AddEdge(80, 90);
-            graph.AddEdge(90, 10);
-
-            graph.Display();
-
-            Vertex srcVertex = graph.GetVertexById(10);
-            Vertex destVertex = graph.GetVertexById(70);
-
-            Console.WriteLine("All paths from given source " + srcVertex.Id + " to given destination " + destVertex.Id);
-            AllPathsFromSourceToDestination(srcVertex, destVertex);
-        }
     }
 }

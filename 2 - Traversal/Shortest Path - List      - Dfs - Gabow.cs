@@ -2,39 +2,30 @@
 using System.Collections.Generic;
 
 namespace GraphSamples
-{
-    /*
-     http://www.sanfoundry.com/java-program-gabow-algorithm/
-    */
-    public class Gabow
+{    
+    // http://www.sanfoundry.com/java-program-gabow-algorithm/
+    
+    public partial class TraversalSamples
     {
-        /** number of vertices **/
-
         private int V;
-        /** preorder number counter **/
 
         private int preCount;
 
         private int[] preorder;
-        /** to check if v is visited **/
 
         private bool[] visited;
-        /** check strong componenet containing v **/
 
         private bool[] chk;
-        /** to store given graph **/
 
         private List<int>[] graph;
-        /** to store all scc **/
 
         private List<List<int>> sccComp;
 
         private Stack<int> stack1;
 
         private Stack<int> stack2;
-        /** function to get all strongly connected components **/
 
-        public List<List<int>> getSCComponents(List<int>[] graph)
+        public List<List<int>> GetSCComponents(List<int>[] graph)
         {
             V = graph.Length;
             this.graph = graph;
@@ -51,7 +42,6 @@ namespace GraphSamples
                     dfs(v);
             return sccComp;
         }
-        /** function dfs **/
 
         public void dfs(int v)
         {
@@ -85,40 +75,6 @@ namespace GraphSamples
 
                 sccComp.Add(component);
             }
-        }
-        /** main **/
-
-        public static void GabowShortestPathTest()
-        {
-            Console.WriteLine("Gabow algorithm Test\n");
-            Console.WriteLine("Enter number of Vertices");
-
-            /** number of vertices **/
-            int V = Convert.ToInt32(Console.ReadLine());
-            /** make graph **/
-            List<int>[] g = new List<int>[V];
-
-            for (int i = 0; i < V; i++)
-                g[i] = new List<int>();
-
-            /** accpet all edges **/
-            Console.WriteLine("\nEnter number of edges");
-            int E = Convert.ToInt32(Console.ReadLine());
-            /** all edges **/
-            Console.WriteLine("Enter " + E + " x, y coordinates");
-
-            for (int i = 0; i < E; i++)
-            {
-                int x = Convert.ToInt32(Console.ReadLine());
-                int y = Convert.ToInt32(Console.ReadLine());
-                g[x].Add(y);
-            }
-
-            Gabow gab = new Gabow();
-            Console.WriteLine("\nSCC : ");
-            /** print all strongly connected components **/
-            List<List<int>> scComponents = gab.getSCComponents(g);
-            Console.WriteLine(scComponents);
         }
     }
 }

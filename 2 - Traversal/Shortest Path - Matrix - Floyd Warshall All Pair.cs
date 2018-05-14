@@ -70,7 +70,7 @@ namespace GraphSamples
     public partial class TraversalSamples
     {
         // https://algorithms.tutorialhorizon.com/dynamic-programming-count-all-paths-from-top-left-to-bottom-right-of-a-mxn-matrix/
-        public int[,] AllPairShortestPath(int[,] srcMatrix)
+        public int[,] FloydWarshallAllPairShortestPath(int[,] srcMatrix)
         {
             int[,] minDistance = new int[srcMatrix.GetLength(0), srcMatrix.GetLength(0)];
             int[,] pathMatrix = new int[srcMatrix.GetLength(0), srcMatrix.GetLength(0)];
@@ -173,7 +173,7 @@ namespace GraphSamples
 
             TestData.Display(graph);
 
-            int[,] minDistance = AllPairShortestPath(graph);
+            int[,] minDistance = FloydWarshallAllPairShortestPath(graph);
             TestData.Display(minDistance);
 
             Console.WriteLine("\nMinimum Distance Matrix : ");            

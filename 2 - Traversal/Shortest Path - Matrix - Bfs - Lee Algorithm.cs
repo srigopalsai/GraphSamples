@@ -2,10 +2,10 @@
 
 namespace GraphSamples
 {
-    /* Other Path Finding Algorithms to visit
-        1. HadLock Algorithm
-        2. Soukup's Algorithm
-        3. Line-Search Algorithms ( Mikami-Tabuchi, Hightower)    */
+     // Other Path Finding Algorithms to visit
+     //   1. HadLock Algorithm
+     //   2. Soukup's Algorithm
+     //   3. Line-Search Algorithms ( Mikami-Tabuchi, Hightower) 
 
     public partial class TraversalSamples
     {

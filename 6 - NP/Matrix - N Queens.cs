@@ -58,25 +58,25 @@ namespace GraphSamples._6___NP
                 bool foundSafe = true;
                 //check if this row and col is not under attack from any previous queen.
 
-                for (int queen = 0; queen < row; queen++)
-                {
-                    if (positions[queen].col == col || positions[queen].row - positions[queen].col == row - col ||
-                            positions[queen].row + positions[queen].col == row + col)
-                    {
-                        foundSafe = false;
-                        break;
-                    }
-                }
+                //for (int queen = 0; queen < row; queen++)
+                //{
+                //    if (positions[queen].col == col || positions[queen].row - positions[queen].col == row - col ||
+                //            positions[queen].row + positions[queen].col == row + col)
+                //    {
+                //        foundSafe = false;
+                //        break;
+                //    }
+                //}
 
-                if (foundSafe)
-                {
-                    positions[row] = new Position(row, col);
+                //if (foundSafe)
+                //{
+                //    positions[row] = new Position(row, col);
 
-                    if (solveNQueenOneSolutionUtil(n, row + 1, positions))
-                    {
-                        return true;
-                    }
-                }
+                //    if (solveNQueenOneSolutionUtil(n, row + 1, positions))
+                //    {
+                //        return true;
+                //    }
+                //}
             }
             return false;
         }
@@ -99,52 +99,53 @@ namespace GraphSamples._6___NP
                 StringBuilder buff = new StringBuilder();
                 List<String> oneResult = new List<string>();
 
-                foreach (Position p in positions)
-                {
-                    for (int i = 0; i < n; i++)
-                    {
-                        if (p.col == i)
-                        {
-                            buff.Append("Q");
-                        }
-                        else
-                        {
-                            buff.append(".");
-                        }
-                    }
-                    oneResult.Add(buff.toString());
-                    buff = new StringBuffer();
-                }
-                result.Add(oneResult);
-                return;
+                //    foreach (Position p in positions)
+                //    {
+                //        for (int i = 0; i < n; i++)
+                //        {
+                //            if (p.col == i)
+                //            {
+                //                buff.Append("Q");
+                //            }
+                //            else
+                //            {
+                //                buff.append(".");
+                //            }
+                //        }
+                //        oneResult.Add(buff.toString());
+                //        buff = new StringBuffer();
+                //    }
+                //    result.Add(oneResult);
+                //    return;
+                //}
+
+                //for (int i = 0; i < n; i++)
+                //{
+                //    bool foundSafe = true;
+
+                //    for (int j = 0; j < current; j++)
+                //    {
+                //        if (positions[j].col == i || positions[j].col - positions[j].row == i - current || positions[j].row + positions[j].col == i + current)
+                //        {
+                //            foundSafe = false;
+                //            break;
+                //        }
+                //    }
+
+                //    if (foundSafe)
+                //    {
+                //        positions[current] = new Position(current, i);
+                //        solve(current + 1, positions, result, n);
+                //    }
+                //}
             }
 
-            for (int i = 0; i < n; i++)
-            {
-                bool foundSafe = true;
-
-                for (int j = 0; j < current; j++)
-                {
-                    if (positions[j].col == i || positions[j].col - positions[j].row == i - current || positions[j].row + positions[j].col == i + current)
-                    {
-                        foundSafe = false;
-                        break;
-                    }
-                }
-
-                if (foundSafe)
-                {
-                    positions[current] = new Position(current, i);
-                    solve(current + 1, positions, result, n);
-                }
-            }
-        }
-
-        public static void main(String[] args)
-        {
-            NQueenProblem s = new NQueenProblem();
-            Position[] positions = s.solveNQueenOneSolution(6);
-            Arrays.stream(positions).forEach(position->Console.WriteLine(position.row + " " + position.col));
+            //public static void main(String[] args)
+            //{
+            //    NQueenProblem s = new NQueenProblem();
+            //    Position[] positions = s.solveNQueenOneSolution(6);
+            //    Arrays.stream(positions).forEach(position->Console.WriteLine(position.row + " " + position.col));
+            //}
         }
     }
 }

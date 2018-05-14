@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace GraphSamples
 {
     // https://en.wikipedia.org/wiki/Eulerian_path
-
-    public class EulerianPathAndCircuit
+    // EulerianPathAndCircuit
+    public partial class TraversalSamples
     {
         public enum Eulerian
         {
@@ -36,7 +36,7 @@ namespace GraphSamples
             }
 
             Dictionary<Vertex, bool> visited = new Dictionary<Vertex, bool>();
-            DFS(startVertex, visited);
+            EulerianByDFS(startVertex, visited);
 
             foreach (KeyValuePair<long,Vertex> vertexPair in graph.Verticies)
             {
@@ -49,7 +49,7 @@ namespace GraphSamples
 
         }
 
-        private void DFS(Vertex startVertex, Dictionary<Vertex, bool> visited)
+        private void EulerianByDFS(Vertex startVertex, Dictionary<Vertex, bool> visited)
         {
             visited[startVertex] = true;
 
@@ -57,12 +57,12 @@ namespace GraphSamples
             {
                 if (!visited.ContainsKey(child))
                 {
-                    DFS(child, visited);
+                    EulerianByDFS(child, visited);
                 }
             }
         }
 
-        public Eulerian IsEulerian(Graph graph)
+        public Eulerian IsEulerianPath(Graph graph)
         {
             if (!IsConnected(graph))
             {
@@ -85,25 +85,6 @@ namespace GraphSamples
             }
 
             return oddCnt == 0 ? Eulerian.EULERIAN : Eulerian.SEMIEULERIAN;
-        }
-
-        public void EulerianPathTest()
-        {
-            Graph graph = new Graph(false);
-            graph.AddSingleVertex(1);
-            graph.AddSingleVertex(2);
-            graph.AddSingleVertex(3);
-
-            graph.AddEdge(4, 5);
-            graph.AddEdge(6, 4);
-            graph.AddEdge(5, 6);
-
-            graph.Display();
-
-            Eulerian result = IsEulerian(graph);
-
-            Console.WriteLine("Eulerian Path : " );
-            Console.WriteLine(result.ToString());
         }
     }
 }

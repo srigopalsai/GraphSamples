@@ -20,7 +20,7 @@ namespace GraphSamples
         private static void TraversalSamplesTest()
         {
             TraversalSamples traversalSamples = new TraversalSamples();
-            traversalSamples.AllPathsFromSourceToDestinationTest();
+            //traversalSamples.AllPathsFromSourceToDestinationTest();
             //traversalSamples.FWShortestPathTest();
             //traversalSamples.DijkstraShortestPathTest();
             //traversalSamples.IsConnectedByDfsIterativeTest();
