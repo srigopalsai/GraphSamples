@@ -3,15 +3,11 @@ using System.Collections.Generic;
 
 namespace GraphSamples
 {
-    /*
-     Find single source shortest path using Dijkstra's algorithm 
-     Space complexity - O(E + V)
-     Time complexity - O(ElogV)
+     //Find single source shortest path using Dijkstra's algorithm 
+     //Space Complexity - O(E + V)
+     //Time  Complexity - O(E log V)
  
-     References
-     https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
-     CLRS book     
-    */
+     //https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
 
     public partial class TraversalSamples
     {
@@ -67,6 +63,7 @@ namespace GraphSamples
                     }
                 }
             }
+
             return distanceDict;
         }
 

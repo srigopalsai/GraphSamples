@@ -56,12 +56,13 @@
     <Compile Include="2 - Traversal\Matrix - Dfs Bfs            - Is Connected.cs" />
     <Compile Include="2 - Traversal\List      - Dfs                 - All Paths From Source to Destination.cs" />
     <Compile Include="2 - Traversal\Matrix - Bfs                  - Max Flow - Ford Fulkerson.cs" />
+    <Compile Include="2 - Traversal\Shortest Path - Matrix - Bfs - Dijkstra.cs" />
     <Compile Include="2 - Traversal\Shortest Path - List      - Dfs - Gabow.cs" />
     <Compile Include="2 - Traversal\Shortest Path - Matrix - Bfs - Distance From Exit.cs" />
     <Compile Include="2 - Traversal\Matrix - Transitive Closure - Floyd Warshall and DFS.cs" />
     <Compile Include="2 - Traversal\List      - Dfs                 - Eulerian Path.cs" />
     <Compile Include="2 - Traversal\Shortest Path - List      - Bellman Ford Single Source.cs" />
-    <Compile Include="2 - Traversal\Shortest Path - List      - Dfs - TP Sort - Directed Acyclic Graph.cs" />
+    <Compile Include="2 - Traversal\Shortest Path - List      - Bfs - TP Sort - Directed Acyclic Graph.cs" />
     <Compile Include="2 - Traversal\Shortest Path - Matrix - Bfs - Lee Algorithm.cs" />
     <Compile Include="3 - Cycle\Detect All Cycles - Johnson Simple Cycles.cs" />
     <Compile Include="3 - Cycle\Detect Cycle.cs" />
@@ -106,6 +107,9 @@
     <None Include="0 - References\Graph Data Reference.pptx" />
     <None Include="0 - References\Graph Data Reference.xlsx" />
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Connectivity\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

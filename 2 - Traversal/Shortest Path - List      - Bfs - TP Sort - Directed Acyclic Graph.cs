@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace GraphSamples
 {
     // Is a directed graph with no directed cycles. 
-    // That is, it is formed by a collection of vertices and directed edges, each edge connecting one vertex to another.
+    // I.e. It is formed by a collection of vertices and directed edges, each edge connecting one vertex to another.
     // Such that there is no way to start at some vertex v and follow a sequence of edges that eventually loops back to v again.
     
     // https://en.wikipedia.org/wiki/Directed_acyclic_graph
@@ -12,7 +12,7 @@ namespace GraphSamples
 
     public partial class TraversalSamples
     {
-        public Dictionary<Vertex, int> ShortestPathForDAC(Graph graph, Vertex startVertex)
+        public Dictionary<Vertex, int> BfsShortestPathForDAC(Graph graph, Vertex startVertex)
         {
             Dictionary<Vertex, int> distance = new Dictionary<Vertex, int>();
             GeneralSamples generalSamples = new GeneralSamples();
@@ -26,19 +26,17 @@ namespace GraphSamples
 
                 foreach (Edge edge in vertex.Edges)
                 {
-                    if (getDistance(edge.Vertex2, distance) > getDistance(edge.Vertex1, distance) + edge.Weight)
+                    int v1Distance = distance.ContainsKey(edge.Vertex1) ? distance[vertex] : 1000;
+                    int v2Distance = distance.ContainsKey(edge.Vertex2) ? distance[vertex] : 1000;
+
+                    if (v2Distance > v1Distance + edge.Weight)
                     {
-                        distance[edge.Vertex2] = getDistance(edge.Vertex1, distance) + edge.Weight;
+                        distance[edge.Vertex2] = v1Distance + edge.Weight;
                     }
                 }
             }
 
             return distance;
-        }
-
-        private int getDistance(Vertex vertex, Dictionary<Vertex, int> distance)
-        {
-            return distance.ContainsKey(vertex) ? distance[vertex] : 1000;
         }
 
         public void ShortestPathDAGTest()
@@ -58,10 +56,12 @@ namespace GraphSamples
             Console.WriteLine("ShortestPath for Directed Acyclic Graph Test");
             Vertex srcVertex = graph.Verticies[0];
 
-            Dictionary<Vertex, int> distance = ShortestPathForDAC(graph, srcVertex);
+            Dictionary<Vertex, int> distance = BfsShortestPathForDAC(graph, srcVertex);
 
             foreach (KeyValuePair<Vertex, int> vertexPath in distance)
+            {
                 Console.WriteLine(srcVertex.Id + " to " + vertexPath.Key.Id + " " + vertexPath.Value);
+            }
         }
     }
 }

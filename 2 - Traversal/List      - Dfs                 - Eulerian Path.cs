@@ -45,8 +45,8 @@ namespace GraphSamples
                     return false;
                 }
             }
-            return true;
 
+            return true;
         }
 
         private void EulerianByDFS(Vertex startVertex, Dictionary<Vertex, bool> visited)

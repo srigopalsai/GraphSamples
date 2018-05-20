@@ -7,8 +7,6 @@ namespace GraphSamples
     
     public partial class TraversalSamples
     {
-        private int V;
-
         private int preCount;
 
         private int[] preorder;
@@ -27,40 +25,46 @@ namespace GraphSamples
 
         public List<List<int>> GetSCComponents(List<int>[] graph)
         {
-            V = graph.Length;
+            int graphLen = graph.Length;
             this.graph = graph;
-            preorder = new int[V];
-            chk = new bool[V];
-            visited = new bool[V];
+            preorder = new int[graphLen];
+            chk = new bool[graphLen];
+            visited = new bool[graphLen];
+
             stack1 = new Stack<int>();
             stack2 = new Stack<int>();
             sccComp = new List<List<int>>();
 
-            for (int v = 0; v < V; v++)
+            for (int v = 0; v < graphLen; v++)
 
                 if (!visited[v])
                     dfs(v);
             return sccComp;
         }
 
-        public void dfs(int v)
+        public void dfs(int vertex)
         {
-            preorder[v] = preCount++;
-            visited[v] = true;
-            stack1.Push(v);
-            stack2.Push(v);
+            preorder[vertex] = preCount++;
+            visited[vertex] = true;
+            stack1.Push(vertex);
+            stack2.Push(vertex);
 
-            foreach (int w in graph[v])
+            foreach (int w in graph[vertex])
             {
                 if (!visited[w])
+                {
                     dfs(w);
+                }
                 else if (!chk[w])
-
+                {
                     while (preorder[stack2.Peek()] > preorder[w])
+                    {
                         stack2.Pop();
+                    }
+                }
             }
 
-            if (stack2.Peek() == v)
+            if (stack2.Peek() == vertex)
             {
                 stack2.Pop();
                 List<int> component = new List<int>();
@@ -71,7 +75,7 @@ namespace GraphSamples
                     w = stack1.Pop();
                     component.Add(w);
                     chk[w] = true;
-                } while (w != v);
+                } while (w != vertex);
 
                 sccComp.Add(component);
             }
