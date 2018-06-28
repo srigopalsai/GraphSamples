@@ -64,6 +64,7 @@
     <Compile Include="2 - Traversal\Shortest Path - List      - Bellman Ford Single Source.cs" />
     <Compile Include="2 - Traversal\Shortest Path - List      - Bfs - TP Sort - Directed Acyclic Graph.cs" />
     <Compile Include="2 - Traversal\Shortest Path - Matrix - Bfs - Lee Algorithm.cs" />
+    <Compile Include="2 - Traversal\Shortest Path - Matrix - With K Steps.cs" />
     <Compile Include="3 - Cycle\Detect All Cycles - Johnson Simple Cycles.cs" />
     <Compile Include="3 - Cycle\Detect Cycle.cs" />
     <Compile Include="3 - Cycle\Is Directed Acyclic Graph.cs" />

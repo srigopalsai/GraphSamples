@@ -54,6 +54,7 @@ namespace GraphSamples
 
                 disjointSet.Union(edge.Vertex1.Id, edge.Vertex2.Id);
             }
+
             return false;
         }
 
@@ -74,6 +75,7 @@ namespace GraphSamples
                     return true;
                 }
             }
+
             return false;
         }
 
@@ -81,23 +83,26 @@ namespace GraphSamples
         {
             visited.Add(vertex);
 
-            foreach (Vertex adj in vertex.Adjacents)
+            foreach (Vertex adjVertex in vertex.Adjacents)
             {
-                if (adj.Equals(parent))
+                if (adjVertex.Equals(parent))
                 {
                     continue;
                 }
-                if (visited.Contains(adj))
+
+                if (visited.Contains(adjVertex))
                 {
                     return true;
                 }
 
-                bool hasCycle = HasCycleDFSUtil(adj, visited, vertex);
+                bool hasCycle = HasCycleDFSUtil(adjVertex, visited, vertex);
+
                 if (hasCycle)
                 {
                     return true;
                 }
             }
+
             return false;
         }
 

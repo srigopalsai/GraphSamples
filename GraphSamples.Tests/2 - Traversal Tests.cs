@@ -9,7 +9,7 @@ namespace GraphSamples.Tests
     public class TraversalTests
     {
         TraversalSamples traversalSamples = new TraversalSamples();
-
+        public TestContext TestContext { get; set; }
         [TestMethod]
         [TestCategory("Dfs")]
         [TestCategory("Traversal")]
@@ -118,6 +118,52 @@ namespace GraphSamples.Tests
         }
 
         [TestMethod]
+        public void CountAllPossibleWalksWithKEdgesTest()
+        {
+            //int[,] graph = new int[,] { {0, 1, 1, 1},
+            //                            {0, 0, 0, 1},
+            //                            {0, 0, 0, 1},
+            //                            {0, 0, 0, 0} };
+
+                                      // A  B  C  D  E  F  G  H  I  J
+            int[,] graph = new int[,] { {0, 1, 1, 0, 1, 0, 0, 1, 1, 0},   // A
+                                        {1, 0, 1, 1, 1, 0, 0, 0, 0, 0},   // B
+                                        {1, 1, 0, 1, 0, 1, 0, 0, 0, 0},   // C
+                                        {0, 1, 1, 0, 1, 0, 1, 0, 0, 0},   // D
+                                        {1, 1, 0, 1, 0, 1, 1, 0, 0, 0},   // E
+                                        {0, 0, 1, 0, 1, 0, 1, 0, 0, 0},   // F
+                                        {0, 0, 0, 1, 1, 1, 0, 0, 0, 0},   // G 
+                                        {1, 0, 0, 0, 0, 0, 0, 0, 1, 0},   // H
+                                        {1, 0, 0, 0, 0, 0, 0, 1, 0, 0},   // I
+                                        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0} }; // J
+
+            int srcVertex = 0;
+            int destVertex = 4;
+            int k = 5;   // When K = 1,2, 3 - Result 1
+
+            //Console.Write(traversalSamples.CountAllPossibleWalksWithKEdges(graph, srcVertex, destVertex, k));
+
+            bool[,] visited = new bool[graph.GetLength(0), graph.GetLength(1)];
+            Console.Write(traversalSamples.CountAllPossibleWalksWithKEdges(graph, srcVertex, destVertex, k, visited));
+        }
+
+        [TestMethod]
+        public void CountAllPossibleWalksWithKEdges2Test()
+        {
+            int[,] graph = { {0, 1, 1, 1},
+                             {0, 0, 0, 1},
+                             {0, 0, 0, 1},
+                             {0, 0, 0, 0} };
+
+            int srcVertex = 0;
+            int dstVertex = 3;
+            int kEdges = 2;
+
+            int noOfPaths = traversalSamples.CountAllPossibleWalksWithKEdges2(graph, srcVertex, dstVertex, kEdges);
+            Console.WriteLine("No of paths from source to destination " + noOfPaths);
+        }
+
+        [TestMethod]
         public void EulerianPathTest()
         {
             Graph graph = new Graph(false);
@@ -125,6 +171,7 @@ namespace GraphSamples.Tests
             graph.AddSingleVertex(2);
             graph.AddSingleVertex(3);
 
+            graph.AddEdge(1, 4);
             graph.AddEdge(4, 5);
             graph.AddEdge(6, 4);
             graph.AddEdge(5, 6);

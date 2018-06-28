@@ -32,6 +32,10 @@ namespace GraphSamples
             Adjacents.Add(v);
         }
 
+        /// <summary>
+        /// No of Edges
+        /// </summary>
+        /// <returns></returns>
         public int GetDegree()
         {
             return Edges.Count;
