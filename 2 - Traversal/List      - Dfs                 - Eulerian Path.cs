@@ -35,12 +35,12 @@ namespace GraphSamples
                 return true;
             }
 
-            Dictionary<Vertex, bool> visited = new Dictionary<Vertex, bool>();
+            HashSet<Vertex> visited = new HashSet<Vertex>();
             EulerianByDFS(startVertex, visited);
 
             foreach (KeyValuePair<long,Vertex> vertexPair in graph.Verticies)
             {
-                if (vertexPair.Value.GetDegree() != 0 && visited.ContainsKey(vertexPair.Value) == false)
+                if (vertexPair.Value.GetDegree() != 0 && visited.Contains(vertexPair.Value) == false)
                 {
                     return false;
                 }
@@ -49,13 +49,13 @@ namespace GraphSamples
             return true;
         }
 
-        private void EulerianByDFS(Vertex startVertex, Dictionary<Vertex, bool> visited)
+        private void EulerianByDFS(Vertex curVertex, HashSet<Vertex> visited)
         {
-            visited[startVertex] = true;
+            visited.Add(curVertex);
 
-            foreach (Vertex child in startVertex.Adjacents)
+            foreach (Vertex child in curVertex.Adjacents)
             {
-                if (!visited.ContainsKey(child))
+                if (!visited.Contains(child))
                 {
                     EulerianByDFS(child, visited);
                 }

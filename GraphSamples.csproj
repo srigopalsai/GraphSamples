@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="1 - Graph\Common.cs" />
     <Compile Include="1 - Graph\Graph - Type 2.cs" />
     <Compile Include="1 - Graph\Matrix.cs" />
     <Compile Include="0 - References\Test Data.cs" />

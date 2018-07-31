@@ -76,18 +76,18 @@ namespace GraphSamples
         // With visitor tracking
         public int CountAllPossibleWalksWithKEdges(int[,] graph, int srcVertex, int destVertex, int kEdges, bool[,] visited)
         {
-            if ((kEdges == 0 && srcVertex == destVertex) ||
-                 (kEdges == 1 && graph[srcVertex, destVertex] == 1))
+            if ((kEdges == 0 && srcVertex == destVertex) || (kEdges == 1 && graph[srcVertex, destVertex] == 1))
             {
                 return 1;
             }
 
-            if (kEdges <= 0)
+            if (kEdges <= 0 || visited[srcVertex, destVertex] == true)
+            {
                 return 0;
+            }
 
-            if (visited[srcVertex, destVertex] == true)
-                return 0;
             visited[srcVertex, destVertex] = true;
+
             int count = 0;
 
             // Visit all adjacents of srcVertext
@@ -99,17 +99,18 @@ namespace GraphSamples
                     count += CountAllPossiblePathsWithKEdges(graph, adjIndx, destVertex, kEdges - 1);
                 }
             }
+
             visited[srcVertex, destVertex] = false;
 
             return count;
         }
 
         // A Dynamic programming based function // to count walks from u to v with k edges
-        public int CountAllPossibleWalksWithKEdges2(int[,] srcGraph, int srcVertex, int dstVertex, int kEdges)
+        public int CountAllPossibleWalksWithKEdges2(int[,] srcGraph, int sourceVertex, int targetVertex, int kEdges)
         {
             // The value count[src][dst][edg] will/ store count of possible walks from src to dst with exactly k edges
 
-            int[,,] count = new int[srcGraph.GetLength(0), srcGraph.GetLength(1), kEdges + 1];
+            int[,,] dpLkUp = new int[srcGraph.GetLength(0), srcGraph.GetLength(1), kEdges + 1];
 
             for (int edgIndx = 0; edgIndx <= kEdges; edgIndx++)
             {
@@ -117,14 +118,16 @@ namespace GraphSamples
                 {
                     for (int dstIndx = 0; dstIndx < srcGraph.GetLength(1); dstIndx++)
                     {
+                        dpLkUp[srcIndx, dstIndx, edgIndx] = 0;
+
                         // from base cases
                         if (edgIndx == 0 && srcIndx == dstIndx)
                         {
-                            count[srcIndx, dstIndx, edgIndx] = 1;
+                            dpLkUp[srcIndx, dstIndx, edgIndx] = 1;
                         }
                         if (edgIndx == 1 && srcGraph[srcIndx, dstIndx] == 1)
                         {
-                            count[srcIndx, dstIndx, edgIndx] = 1;
+                            dpLkUp[srcIndx, dstIndx, edgIndx] = 1;
                         }
 
                         if (edgIndx <= 1)
@@ -135,14 +138,14 @@ namespace GraphSamples
                         {
                             if (srcGraph[srcIndx, nbrIndx] == 1)
                             {
-                                count[srcIndx, dstIndx, edgIndx] += count[nbrIndx, dstIndx, edgIndx - 1];
+                                dpLkUp[srcIndx, dstIndx, edgIndx] += dpLkUp[nbrIndx, dstIndx, edgIndx - 1];
                             }
                         }
                     }
                 }
             }
 
-            return count[srcVertex, dstVertex, kEdges];
+            return dpLkUp[sourceVertex, targetVertex, kEdges];
         }
 
         // https://stackoverflow.com/questions/40709283/count-paths-from-source-to-destination-in-a-matrix-moving-in-all-4-directions
