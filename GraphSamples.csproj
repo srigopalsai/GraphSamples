@@ -75,7 +75,7 @@
     <Compile Include="4 - General\List      - Dfs - Strongly Connected Components - Kosa Raju.cs" />
     <Compile Include="5 - Minimum Spanning Tree\Boruvkas.cs" />
     <Compile Include="6 - NP\List      - Find Good Feedback Set.cs" />
-    <Compile Include="6 - NP\Matrix - Dft - Knights Tour.cs" />
+    <Compile Include="6 - NP\Matrix - Knights Tour.cs" />
     <Compile Include="6 - NP\Matrix - Hamiltonian Cycle.cs" />
     <Compile Include="6 - NP\Graph Coloring.cs" />
     <Compile Include="6 - NP\List      - Dfs - Hamiltonian Cycle.cs" />

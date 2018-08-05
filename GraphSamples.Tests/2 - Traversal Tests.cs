@@ -159,7 +159,7 @@ namespace GraphSamples.Tests
             int dstVertex = 3;
             int kEdges = 2;
 
-            int noOfPaths = traversalSamples.CountAllPossibleWalksWithKEdges2(graph, srcVertex, dstVertex, kEdges);
+            int noOfPaths = traversalSamples.CountAllPossibleWalksWithKEdgesDP(graph, srcVertex, dstVertex, kEdges);
             Console.WriteLine("No of paths from source to destination " + noOfPaths);
         }
 

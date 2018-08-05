@@ -49,8 +49,7 @@ namespace GraphSamples
         // No Visitor tracking, Time Complexity O(V^k)
         public int CountAllPossiblePathsWithKEdges(int[,] graph, int srcVertex, int destVertex, int kEdges)
         {
-            if ((kEdges == 0 && srcVertex == destVertex) ||
-                 (kEdges == 1 && graph[srcVertex, destVertex] == 1))
+            if ((kEdges == 0 && srcVertex == destVertex) || (kEdges == 1 && graph[srcVertex, destVertex] == 1))
             {
                 return 1;
             }
@@ -73,7 +72,7 @@ namespace GraphSamples
             return count;
         }
 
-        // With visitor tracking
+        // With visitor back tracking
         public int CountAllPossibleWalksWithKEdges(int[,] graph, int srcVertex, int destVertex, int kEdges, bool[,] visited)
         {
             if ((kEdges == 0 && srcVertex == destVertex) || (kEdges == 1 && graph[srcVertex, destVertex] == 1))
@@ -106,17 +105,17 @@ namespace GraphSamples
         }
 
         // A Dynamic programming based function // to count walks from u to v with k edges
-        public int CountAllPossibleWalksWithKEdges2(int[,] srcGraph, int sourceVertex, int targetVertex, int kEdges)
+        public int CountAllPossibleWalksWithKEdgesDP(int[,] graph, int sourceVertex, int targetVertex, int kEdges)
         {
             // The value count[src][dst][edg] will/ store count of possible walks from src to dst with exactly k edges
 
-            int[,,] dpLkUp = new int[srcGraph.GetLength(0), srcGraph.GetLength(1), kEdges + 1];
+            int[,,] dpLkUp = new int[graph.GetLength(0), graph.GetLength(1), kEdges + 1];
 
             for (int edgIndx = 0; edgIndx <= kEdges; edgIndx++)
             {
-                for (int srcIndx = 0; srcIndx < srcGraph.GetLength(0); srcIndx++)
+                for (int srcIndx = 0; srcIndx < graph.GetLength(0); srcIndx++)
                 {
-                    for (int dstIndx = 0; dstIndx < srcGraph.GetLength(1); dstIndx++)
+                    for (int dstIndx = 0; dstIndx < graph.GetLength(1); dstIndx++)
                     {
                         dpLkUp[srcIndx, dstIndx, edgIndx] = 0;
 
@@ -125,7 +124,7 @@ namespace GraphSamples
                         {
                             dpLkUp[srcIndx, dstIndx, edgIndx] = 1;
                         }
-                        if (edgIndx == 1 && srcGraph[srcIndx, dstIndx] == 1)
+                        if (edgIndx == 1 && graph[srcIndx, dstIndx] == 1)
                         {
                             dpLkUp[srcIndx, dstIndx, edgIndx] = 1;
                         }
@@ -134,9 +133,9 @@ namespace GraphSamples
                             continue;
 
                         // Goto adjacent only when number of edges is more than 1
-                        for (int nbrIndx = 0; nbrIndx < srcGraph.GetLength(0); nbrIndx++)
+                        for (int nbrIndx = 0; nbrIndx < graph.GetLength(0); nbrIndx++)
                         {
-                            if (srcGraph[srcIndx, nbrIndx] == 1)
+                            if (graph[srcIndx, nbrIndx] == 1)
                             {
                                 dpLkUp[srcIndx, dstIndx, edgIndx] += dpLkUp[nbrIndx, dstIndx, edgIndx - 1];
                             }
@@ -148,17 +147,118 @@ namespace GraphSamples
             return dpLkUp[sourceVertex, targetVertex, kEdges];
         }
 
+        // https://www.geeksforgeeks.org/shortest-path-exactly-k-edges-directed-weighted-graph/
+        // Define number of vertices in the graph and infinite value
+        // A naive recursive function to count walks from srcVertex to destVertex with k edges
+        // Worst Time O(V^k)
+
+        static readonly int INF = int.MaxValue;
+        public int ShortestPath(int[,] graph, int srcVertex, int destVertex, int kEdges)
+        {
+            if (kEdges == 0 && srcVertex == destVertex)
+            {
+                return 0;
+            }
+
+            if (kEdges == 1 && graph[srcVertex, destVertex] != INF)
+            {
+                return graph[srcVertex, destVertex];
+            }
+
+            if (kEdges <= 0)
+            {
+                return INF;
+            }
+
+            int shortPath = INF;
+
+            for (int adjIndx = 0; adjIndx < graph.GetLength(0); adjIndx++)
+            {
+                if (graph[srcVertex, adjIndx] != INF && srcVertex != adjIndx && destVertex != adjIndx)
+                {
+                    int recSPath = ShortestPath(graph, adjIndx, destVertex, kEdges - 1);
+
+                    if (recSPath != INF)
+                    {
+                        shortPath = Math.Min(shortPath, graph[srcVertex, adjIndx] + recSPath);
+                    }
+                }
+            }
+
+            return shortPath;
+        }
+
+        public void ShortestPathTest()
+        {
+            int[,] graph = new int[,]{ {0, 10, 3, 2},
+                                     {INF, 0, INF, 7},
+                                     {INF, INF, 0, 6},
+                                     {INF, INF, INF, 0}
+                                   };
+
+            int srcVertex = 0;
+            int destVertex = 3;
+            int kEdge = 2;
+
+            Console.WriteLine("Weight of the shortest path is " + ShortestPath(graph, srcVertex, destVertex, kEdge));
+        }
+
+        int V = 4;
+        // A Dynamic programming based function to find the shortest path from u to v with exactly k edges.
+        public int ShortestPathDP(int[,] graph, int srcVertex, int destVertex, int kEdges)
+        {
+            // Table to be filled up using DP. The value sp[i,j,e] will
+            // store weight of the shortest path from i to j with exactly k edges
+            int[,,] sp = new int[V, V, kEdges + 1];
+
+            // Loop for number of edges from 0 to k
+
+            for (int e = 0; e <= kEdges; e++)
+            {
+                for (int i = 0; i < V; i++)  // for source
+                {
+                    for (int j = 0; j < V; j++) // for destination
+                    {
+                        sp[i, j, e] = INF;
+
+                        if (e == 0 && i == j)
+                        {
+                            sp[i, j, e] = 0;
+                        }
+
+                        if (e == 1 && graph[i, j] != INF)
+                        {
+                            sp[i, j, e] = graph[i, j];
+                        }
+
+                        // go to adjacent only when number of edges is more than 1
+
+                        if (e > 1)
+                        {
+                            for (int a = 0; a < V; a++)
+                            {
+                                // There should be an edge from i to a and a should not be same as either i or j
+
+                                if (graph[i, a] != INF && i != a && j != a && sp[a, j, e - 1] != INF)
+                                {
+                                    sp[i, j, e] = Math.Min(sp[i, j, e], graph[i, a] + sp[a, j, e - 1]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return sp[srcVertex, destVertex, kEdges];
+        }
+
         // https://stackoverflow.com/questions/40709283/count-paths-from-source-to-destination-in-a-matrix-moving-in-all-4-directions
         public int CountPathsFromSourceToDestination(int[,] srcMatrix, int rIndx, int cIndx, bool[,] visited)
         {
-            if (rIndx < 0 || cIndx < 0 || rIndx == srcMatrix.GetLength(0) || cIndx == srcMatrix.GetLength(1))
+            if (rIndx < 0 || cIndx < 0 || rIndx == srcMatrix.GetLength(0) || cIndx == srcMatrix.GetLength(1) || visited[rIndx, cIndx] == true)
                 return 0;
 
             if (rIndx == srcMatrix.GetLength(0) - 1 && cIndx == srcMatrix.GetLength(1) - 1)
                 return 1;
-
-            if (visited[rIndx, cIndx] == true)
-                return 0;
 
             visited[rIndx, cIndx] = true;
 

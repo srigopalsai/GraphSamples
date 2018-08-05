@@ -6,10 +6,10 @@ namespace GraphSamples
     {
         static void Main(string[] args)
         {
-            TraversalSamplesTest();
+            //TraversalSamplesTest();
             //NPSamplesTest();
             //GeneralSamplesTest();
-            //CycleSamplesTest();
+            CycleSamplesTest();
 
             //Graph2 adjList = new Graph2(2);// 4);
             //adjList.IsDirectedAcyclicGraphTest();
@@ -31,7 +31,7 @@ namespace GraphSamples
             CycleSamples cycleSamples = new CycleSamples();
             //cycleSamples.DetectAllCyclesJSCTest(); // Failing
             //cycleSamples.HasCycleInDirectedTest();
-            //cycleSamples.HasCycleInUnDirectedTest();
+            cycleSamples.HasCycleInUnDirectedTest();
         }
 
         private static void GeneralSamplesTest()

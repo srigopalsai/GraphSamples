@@ -58,6 +58,8 @@ namespace GraphSamples
             return false;
         }
 
+        //=======================================================================================================================
+
         public bool HasCycleInUnDirectedDFS(Graph graph)
         {
             HashSet<Vertex> visited = new HashSet<Vertex>();
@@ -70,6 +72,7 @@ namespace GraphSamples
                 }
 
                 bool flag = HasCycleDFSUtil(vertexPair.Value, visited, null);
+
                 if (flag)
                 {
                     return true;
@@ -106,6 +109,52 @@ namespace GraphSamples
             return false;
         }
 
+        //=======================================================================================================================
+
+        public bool HasCycleInDirectedDFS(Graph graph)
+        {
+            HashSet<Vertex> visited = new HashSet<Vertex>();
+
+            foreach (KeyValuePair<long, Vertex> vertexPair in graph.Verticies)
+            {
+                if (visited.Contains(vertexPair.Value))
+                {
+                    continue;
+                }
+
+                bool flag = HasCycleDFSUtil(vertexPair.Value, visited, null);
+
+                if (flag)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool HasCycleDFSUtil(Vertex vertex, HashSet<Vertex> visited)
+        {
+            visited.Add(vertex);
+
+            foreach (Vertex adjVertex in vertex.Adjacents)
+            {
+                if (visited.Contains(adjVertex))
+                {
+                    return true;
+                }
+
+                bool hasCycle = HasCycleDFSUtil(adjVertex, visited, vertex);
+
+                if (hasCycle)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public void HasCycleInUnDirectedTest()
         {
             //Graph undGraph = new Graph(false);
@@ -120,32 +169,32 @@ namespace GraphSamples
             //undGraph.Display();
             bool hasCycle = false;
 
-            //Graph undGraph = new Graph(false);
-            //undGraph.AddEdge(1, 0);
-            //undGraph.AddEdge(0, 2);
-            //undGraph.AddEdge(2, 0);
-            //undGraph.AddEdge(0, 3);
-            //undGraph.AddEdge(3, 4);
-
             Graph undGraph = new Graph(false);
-            undGraph.AddEdge(0, 1);
-            undGraph.AddEdge(1, 2);
+            undGraph.AddEdge(1, 0);
+            undGraph.AddEdge(0, 2);
+            //undGraph.AddEdge(2, 0);
+            undGraph.AddEdge(0, 3);
+            undGraph.AddEdge(3, 4);
 
-            undGraph.Display();
-            hasCycle = HasCycleInUnDirectedDFS(undGraph);
-            Console.WriteLine("Has Cycle - Un Directed Graph - DFS : " + hasCycle);
+            //Graph undGraph = new Graph(false);
+            //undGraph.AddEdge(0, 1);
+            //undGraph.AddEdge(1, 2);
 
-            hasCycle = HasCycleUsingDisjointSets(undGraph);
-            Console.WriteLine("Has Cycle - Un Directed Graph - DisjointSets : " + hasCycle);
+            //undGraph.Display();
+            //hasCycle = HasCycleInUnDirectedDFS(undGraph);
+            //Console.WriteLine("Has Cycle - Un Directed Graph - DFS : " + hasCycle);
 
-            Graph dGraph = TestData.DirectedGraphs[TestData.Keys.DGraph9e];
+            //hasCycle = HasCycleUsingDisjointSets(undGraph);
+            //Console.WriteLine("Has Cycle - Un Directed Graph - DisjointSets : " + hasCycle);
 
-            //Graph dGraph = new Graph(false);
-            //dGraph.AddEdge(1, 0);
-            //dGraph.AddEdge(0, 2);
+            //Graph dGraph = TestData.DirectedGraphs[TestData.Keys.DGraph9e];
+
+            Graph dGraph = new Graph(false);
+            dGraph.AddEdge(1, 0);
+            dGraph.AddEdge(0, 2);
             //dGraph.AddEdge(2, 0);
-            //dGraph.AddEdge(0, 3);
-            //dGraph.AddEdge(3, 4);
+            dGraph.AddEdge(0, 3);
+            dGraph.AddEdge(3, 4);
 
             dGraph.Display();
 
